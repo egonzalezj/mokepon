@@ -56,9 +56,9 @@ let mokepones = [];
 let hipodoge = new Mokepon("Hipodoge", "./img/hipodoge.png", "3");
 let capipepo = new Mokepon("Capipepo", "./img/capipepo.png", "3");
 let ratigueya = new Mokepon("Ratigueya", "./img/ratigueya.png", "3");
-let langostelvis = new Mokepon("Langostelvis", "./img/LWkctTb.png", "3");
-let tucapalma = new Mokepon("Tucapalma", "./img/y3s277X.png", "3");
-let pydos = new Mokepon("Pydos", "./img/iaJhdyY.png", "3");
+let langostelvis = new Mokepon("Langostelvis", "./img/langostelvis.png", "3");
+let tucapalma = new Mokepon("Tucapalma", "./img/tucapalma.png", "3");
+let pydos = new Mokepon("Pydos", "./img/pydos.png", "3");
 
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
