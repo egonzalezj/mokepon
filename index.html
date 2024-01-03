@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>MOKEPON!</title>
-        <script src="js/script.js"></script>
         <link rel="stylesheet" href="css/style.css"/>
     </head>
     <body>
@@ -12,37 +11,7 @@
             <h1 class="titulo">MOKEPON</h1>
             <div class="mascotaJugador__tarjetas-container">
                 <h2 class="subtitulo">Elige tu mascota:</h2>
-                <div class="mascotaJugador__tarjetas">
-                    <input type="radio" name="mascota" id="hipodoge"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="hipodoge">
-                        <p>Hipodoge</p>
-                        <img src="/img/hipodoge.png" alt="Hipodoge">
-                    </label>
-                    <input type="radio" name="mascota" id="capipepo"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="capipepo">
-                        <p>Capipepo</p>
-                        <img src="/img/capipepo.png" alt="Capipepo">
-                    </label>
-                    <input type="radio" name="mascota" id="ratigueya"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="ratigueya">
-                        <p>Ratigüeya</p>
-                        <img src="/img/ratigueya.png" alt="Ratigüeya">
-                    </label>
-                    <input type="radio" name="mascota" id="langostelvis"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="langostelvis">
-                        <p>Langostelvis</p>
-                        <img src="/img/LWkctTb.png" alt="Langostelvis">
-                    </label>
-                    <input type="radio" name="mascota" id="tucapalma"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="tucapalma">
-                        <p>Tucapalma</p>
-                        <img src="/img/y3s277X.png" alt="Tucapalma">
-                    </label>
-                    <input type="radio" name="mascota" id="pydos"/>
-                    <label class="mascotaJugador__tarjeta__mascota glass" for="pydos">
-                        <p>Pydos</p>
-                        <img src="/img/iaJhdyY.png" alt="Pydos">
-                    </label>
+                <div class="mascotaJugador__tarjetas" id="contenedor-tarjetas">
                 </div>
             </div>
             <button class="boton boton-m glass mascotaJugador__boton" id="btn-mascotaJugador">Seleccionar</button>
@@ -51,10 +20,7 @@
             <h1 class="titulo">MOKEPON</h1>
             <div class="ataqueJugador__ataque-container">
                 <h2 class="subtitulo">Elige tu ataque:</h2>
-                <div class="ataqueJugador__ataques">
-                    <button class="boton boton-s glass ataqueJugador__boton" id="btn-fuego">Fuego 🔥</button>
-                    <button class="boton boton-s glass ataqueJugador__boton" id="btn-agua">Agua 💧</button>
-                    <button class="boton boton-s glass ataqueJugador__boton" id="btn-tierra">Tierra 🌱</button>
+                <div class="ataqueJugador__ataques" id="contenedor-ataques">
                 </div>
             </div>
             <div class="combate-container">
@@ -64,15 +30,16 @@
                 </section>
                 <section class="combate__mensajes-container" id="mensajes">
                     <div class="combate__mensajes glass__no-hover" id="mensajesJugador">
-                        <h3 class="combate__vidas" id="span-vidasJugador">3</h3>
+                        <h3 class="combate__victorias" id="span-victoriasJugador">0</h3>
                         <h4 class="subtitulo__seccion" id="span-mascotaJugador">Jugador</h4>
                     </div>
                     <div class="combate__mensajes glass__no-hover" id="mensajesEnemigo">
-                        <h3 class="combate__vidas" id="span-vidasEnemigo">3</h3>
+                        <h3 class="combate__victorias" id="span-victoriasEnemigo">0</h3>
                         <h4 class="subtitulo__seccion" id="span-mascotaEnemigo">Enemigo</h4>
                     </div>
                 </section>
             </div>
         </section>
+        <script src="js/script.js"></script>
     </body>
 </html>
