@@ -15,6 +15,8 @@ const mensajesJugador = document.getElementById("mensajesJugador");
 const mensajesEnemigo = document.getElementById("mensajesEnemigo");
 const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
 const contenedorAtaques = document.getElementById("contenedor-ataques");
+//Canvas
+const mapa = document.getElementById("mapa");
 //Input radio
 let inputHipodoge;
 let inputCapipepo;
@@ -24,6 +26,7 @@ let inputTucapalma;
 let inputPydos;
 //Secciones
 const seccionSeleccionarMascota = document.getElementById("seleccionar-mascotaJugador");
+const seccionVerMapa = document.getElementById("ver-mapa");
 const seccionSeleccionarAtaqueJugador = document.getElementById("seleccionar-ataqueJugador");
 const seccionResultado = document.getElementById("resultado");
 const seccionMensajes = document.getElementById("mensajes");
@@ -41,6 +44,7 @@ let ataquesMascotaJugador;
 let ataquesDisponibles;
 let ataquesJugador = [];
 let ataquesEnemigo = [];
+let lienzo = mapa.getContext("2d");
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -110,10 +114,6 @@ pydos.ataques.push(
 
 mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos);
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 function iniciarJuego() {
 
     mokepones.forEach((mokepon) => {
@@ -133,7 +133,7 @@ function iniciarJuego() {
     inputLangostelvis = document.getElementById(langostelvis.nombre);
     inputTucapalma = document.getElementById(tucapalma.nombre);
     inputPydos = document.getElementById(pydos.nombre);
-
+    seccionVerMapa.style.display = "none";
     seccionSeleccionarAtaqueJugador.style.display = "none";
     seccionResultado.style.display = "none";
     seccionMensajes.style.display = "none";
@@ -223,6 +223,10 @@ function mostrarAtaquesJugador(ataques) {
     secuenciaDeAtaqueJugador();
 }
 
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function reiniciarJuego() {
     location.reload();
 }
@@ -294,7 +298,17 @@ function seleccionarMascota() {
     if (mascotaJugador != "") {
         extraerAtaques(mascotaJugador)
         seleccionarMascotaEnemigo();
-        seccionSeleccionarAtaqueJugador.style.display = "flex";
+        seccionVerMapa.style.display = "flex";
+        let imagenDeCapipepo = new Image();
+        imagenDeCapipepo.src = capipepo.foto;
+        lienzo.drawImage(
+            imagenDeCapipepo,
+            20,
+            40,
+            100,
+            100,
+        );
+        //seccionSeleccionarAtaqueJugador.style.display = "flex";
         seccionMensajes.style.display = "grid";
         seccionResultado.style.display = "flex";
         seccionSeleccionarMascota.style.display = "none";
