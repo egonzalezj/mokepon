@@ -2,6 +2,11 @@
 //Botones
 const btnMascotaJugador = document.getElementById("btn-mascotaJugador");
 const btnReiniciar = document.getElementById("btn-reiniciar");
+const btnMoverDerecha = document.getElementById("btn-derecha-mapaMokepon");
+const btnMoverIzquierda = document.getElementById("btn-izquierda-mapaMokepon");
+const btnMoverArriba = document.getElementById("btn-arriba-mapaMokepon");
+const btnMoverAbajo = document.getElementById("btn-abajo-mapaMokepon");
+
 let btnFuego;
 let btnAgua;
 let btnTierra;
@@ -35,7 +40,9 @@ const seccionReiniciar = document.getElementById("reiniciar");
 let ataque;
 let ataqueJugador;
 let ataqueEnemigo;
+let mascotaJugador;
 let mascotaEnemigo;
+let objMascotaJugador;
 let resultadoCombate = "";
 let victoriasJugador = 0;
 let victoriasEnemigo = 0;
@@ -45,6 +52,7 @@ let ataquesDisponibles;
 let ataquesJugador = [];
 let ataquesEnemigo = [];
 let lienzo = mapa.getContext("2d");
+let intervalo;
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -52,6 +60,14 @@ class Mokepon {
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.width = 100;
+        this.height = 100;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -140,6 +156,14 @@ function iniciarJuego() {
     seccionReiniciar.style.display = "none";
     btnMascotaJugador.addEventListener("click", seleccionarMascota);
     btnReiniciar.addEventListener("click", reiniciarJuego);
+    btnMoverDerecha.addEventListener("mousedown", moverMascotaDerecha);
+    btnMoverIzquierda.addEventListener("mousedown", moverMascotaIzquierda);
+    btnMoverArriba.addEventListener("mousedown", moverMascotaArriba);
+    btnMoverAbajo.addEventListener("mousedown", moverMascotaAbajo);
+    btnMoverDerecha.addEventListener("mouseup", detenerMovimiento);
+    btnMoverIzquierda.addEventListener("mouseup", detenerMovimiento);
+    btnMoverArriba.addEventListener("mouseup", detenerMovimiento);
+    btnMoverAbajo.addEventListener("mouseup", detenerMovimiento);
 }
 
 function crearMensaje() {
@@ -188,6 +212,11 @@ function combate() {
     }
 }
 
+function detenerMovimiento() {
+    objMascotaJugador.velocidadX = 0;
+    objMascotaJugador.velocidadY = 0;
+}
+
 function extraerAtaques(mascota) {
     let ataques;
     mokepones.forEach((mokepon) => {
@@ -221,6 +250,43 @@ function mostrarAtaquesJugador(ataques) {
     botones = document.querySelectorAll(".BAtaque");
 
     secuenciaDeAtaqueJugador();
+}
+
+function moverMascotaDerecha() {
+    objMascotaJugador.velocidadX = 5;
+}
+
+function moverMascotaIzquierda() {
+    objMascotaJugador.velocidadX = -5;
+}
+
+function moverMascotaArriba() {
+    objMascotaJugador.velocidadY = -5;
+}
+
+function moverMascotaAbajo() {
+    objMascotaJugador.velocidadY = 5;
+}
+
+function obetnerPropiedadesMascota(mascota) {
+    mokepones.forEach((mokepon) => {
+        if (mascota == mokepon.nombre) {
+            objMascotaJugador = mokepon;
+        }
+    })
+}
+
+function pintarMascota(mascota) {
+    mascota.x += mascota.velocidadX;
+    mascota.y += mascota.velocidadY;
+    lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(
+        mascota.mapaFoto,
+        mascota.x,
+        mascota.y,
+        mascota.width,
+        mascota.height,
+    );
 }
 
 function random(min, max) {
@@ -269,7 +335,7 @@ function secuenciaDeAtaqueJugador(){
 }
 
 function seleccionarMascota() {
-    let mascotaJugador="";
+    mascotaJugador="";
 
     if (inputHipodoge.checked) {
         mascotaJugador = inputHipodoge.id;
@@ -298,20 +364,13 @@ function seleccionarMascota() {
     if (mascotaJugador != "") {
         extraerAtaques(mascotaJugador)
         seleccionarMascotaEnemigo();
-        seccionVerMapa.style.display = "flex";
-        let imagenDeCapipepo = new Image();
-        imagenDeCapipepo.src = capipepo.foto;
-        lienzo.drawImage(
-            imagenDeCapipepo,
-            20,
-            40,
-            100,
-            100,
-        );
         //seccionSeleccionarAtaqueJugador.style.display = "flex";
         seccionMensajes.style.display = "grid";
         seccionResultado.style.display = "flex";
         seccionSeleccionarMascota.style.display = "none";
+        seccionVerMapa.style.display = "flex";
+        obetnerPropiedadesMascota(mascotaJugador);
+        intervalo = setInterval(pintarMascota, 50, objMascotaJugador);
     }
 }
 

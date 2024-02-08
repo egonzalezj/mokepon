@@ -137,6 +137,11 @@ input:checked + label {
     color: black;
 }
 
+.mapa {
+    border: solid white 3px;
+    border-radius: 15px;
+}
+
 .mapaMokepon {
     align-items: center;
     display: flex;
@@ -145,17 +150,16 @@ input:checked + label {
     min-height: 100vh;
 }
 
+.mapaMokepon__boton {
+    margin: 30px 0px;
+}
+
 .mascotaJugador {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
-}
-
-.mapa {
-    border: solid white 3px;
-    border-radius: 15px;
 }
 
 .mascotaJugador__boton {
