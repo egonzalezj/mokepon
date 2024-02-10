@@ -166,6 +166,12 @@ function iniciarJuego() {
     btnMoverAbajo.addEventListener("mouseup", detenerMovimiento);
 }
 
+function iniciarMapa(){
+    intervalo = setInterval(pintarMascota, 50, objMascotaJugador);
+    window.addEventListener("keydown", teclaPresionada);
+    window.addEventListener("keyup", detenerMovimiento);
+}
+
 function crearMensaje() {
     let nuevoAtaqueJugador = document.createElement("p");
     let nuevoAtaqueEnemigo = document.createElement("p");
@@ -370,7 +376,7 @@ function seleccionarMascota() {
         seccionSeleccionarMascota.style.display = "none";
         seccionVerMapa.style.display = "flex";
         obetnerPropiedadesMascota(mascotaJugador);
-        intervalo = setInterval(pintarMascota, 50, objMascotaJugador);
+        iniciarMapa();
     }
 }
 
@@ -379,6 +385,25 @@ function seleccionarMascotaEnemigo() {
     mascotaEnemigo = mokepones[mascotaAleatoria];
 
     spanMascotaEnemigo.innerHTML = mascotaEnemigo.nombre;
+}
+
+function teclaPresionada(event) {
+    switch(event.key) {
+        case "ArrowUp":
+            moverMascotaArriba();
+            break;
+        case "ArrowDown":
+            moverMascotaAbajo();
+            break;
+        case "ArrowLeft":
+            moverMascotaIzquierda();
+            break;
+        case "ArrowRight":
+            moverMascotaDerecha();
+            break;
+        default:
+            break;
+    }
 }
 
 window.addEventListener("load", iniciarJuego);
