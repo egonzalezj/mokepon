@@ -84,6 +84,7 @@ class Mokepon {
 }
 
 let mokepones = [];
+let enemigos = [];
 
 let hipodoge = new Mokepon("Hipodoge", "./img/hipodoge.png", "3", "./img/hipodoge.png");
 let capipepo = new Mokepon("Capipepo", "./img/capipepo.png", "3", "./img/capipepo.png");
@@ -149,6 +150,7 @@ pydos.ataques.push(
 )
 
 mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos);
+enemigos.push(hipodogeEnemigo, capipepoEnemigo, ratigueyaEnemigo, langostelvisEnemigo, tucapalmaEnemigo, pydosEnemigo);
 
 function iniciarJuego() {
 
@@ -319,6 +321,11 @@ function pintarCanvas(mascota) {
     );
     mascota.pintarMokepon();
     pintarEnemigos();
+    if (objMascotaJugador.velocidadX != 0 || objMascotaJugador.velocidadY !=0) {
+        enemigos.forEach((enemigo) => {
+            revisarColision(enemigo);
+        });
+    }
 }
 
 function pintarEnemigos() {
@@ -336,6 +343,29 @@ function random(min, max) {
 
 function reiniciarJuego() {
     location.reload();
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y;
+    const abajoEnemigo = enemigo.y + enemigo.height;
+    const izquierdaEnemigo = enemigo.x;
+    const derechaEnemigo = enemigo.x + enemigo.width;
+
+    const arribaMascota = objMascotaJugador.y;
+    const abajoMascota = objMascotaJugador.y + objMascotaJugador.height;
+    const izquierdaMascota = objMascotaJugador.x;
+    const derechaMascota = objMascotaJugador.x + objMascotaJugador.width;
+
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return
+    }
+    detenerMovimiento();
+    alert("Hay colisión con " + enemigo.nombre);
 }
 
 function secuenciaDeAtaque(ataque) {
