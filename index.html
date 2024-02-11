@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>MOKEPON!</title>
         <link rel="stylesheet" href="css/style.css"/>
     </head>
@@ -20,10 +20,14 @@
             <h1 class="titulo">MOKEPON</h1>
             <h2 class="subtitulo">Recorre el mapa con tu mokepon</h2>
             <canvas class="mapa" id="mapa"></canvas>
-            <button class="boton boton-m glass mapaMokepon__boton" id="btn-derecha-mapaMokepon">▶️</button>
-            <button class="boton boton-m glass mapaMokepon__boton" id="btn-izquierda-mapaMokepon">◀️</button>
-            <button class="boton boton-m glass mapaMokepon__boton" id="btn-arriba-mapaMokepon">🔼</button>
-            <button class="boton boton-m glass mapaMokepon__boton" id="btn-abajo-mapaMokepon">🔽</button>
+            <div class="mapaMokepon__botones">
+                <button class="boton boton-s glass mapaMokepon__boton" id="btn-arriba-mapaMokepon">🔼</button>
+                <div class="mapaMokepon__boton__arriba">
+                    <button class="boton boton-s glass mapaMokepon__boton" id="btn-izquierda-mapaMokepon">◀️</button>
+                    <button class="boton boton-s glass mapaMokepon__boton" id="btn-derecha-mapaMokepon">▶️</button>
+                </div>
+                <button class="boton boton-s glass mapaMokepon__boton" id="btn-abajo-mapaMokepon">🔽</button>
+            </div>
         </section>
         <section class="ataqueJugador" id="seleccionar-ataqueJugador">
             <h1 class="titulo">MOKEPON</h1>

@@ -151,7 +151,15 @@ input:checked + label {
 }
 
 .mapaMokepon__boton {
-    margin: 30px 0px;
+    margin: 5px 0px;
+}
+
+.mapaMokepon__botones {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0px;
 }
 
 .mascotaJugador {
@@ -213,6 +221,7 @@ input:checked + label {
     color: white;
     font-size: 24px;
     margin-bottom: 30px;
+    text-align: center;
     text-transform: uppercase;
 }
 
