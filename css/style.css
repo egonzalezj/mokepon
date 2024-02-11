@@ -137,12 +137,37 @@ input:checked + label {
     color: black;
 }
 
+.mapa {
+    border: solid white 3px;
+    border-radius: 15px;
+}
+
+.mapaMokepon {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.mapaMokepon__boton {
+    margin: 5px 0px;
+}
+
+.mapaMokepon__botones {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
 .mascotaJugador {
     align-items: center;
     display: flex;
     flex-direction: column;
-    /*height: 100vh;*/
     justify-content: center;
+    min-height: 100vh;
 }
 
 .mascotaJugador__boton {
@@ -196,6 +221,7 @@ input:checked + label {
     color: white;
     font-size: 24px;
     margin-bottom: 30px;
+    text-align: center;
     text-transform: uppercase;
 }
 
